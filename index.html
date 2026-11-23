@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>ردّ — ردود تلقائية لعملك</title>
+    <meta name="description" content="ردّ: منصة عراقية للردود التلقائية على واتساب، حجز المواعيد، وتنظيم الطلبات للشركات الصغيرة." />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#10B981" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="ردّ" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <script>
+      // Apply saved appearance before first paint (no flash).
+      (function () {
+        try {
+          var raw = localStorage.getItem('radd-settings');
+          var s = raw ? (JSON.parse(raw).state || {}) : {};
+          var theme = s.theme || 'system';
+          var dark =
+            theme === 'dark' ||
+            (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          document.documentElement.classList.toggle('dark', dark);
+          document.documentElement.dataset.fontSize = s.fontSize || 'md';
+          document.documentElement.dataset.reduceMotion = s.reduceMotion ? 'true' : 'false';
+          document.documentElement.classList.toggle('reduce-motion', Boolean(s.reduceMotion));
+          if (s.language) {
+            document.documentElement.lang = s.language;
+            document.documentElement.dir = s.language === 'ar' ? 'rtl' : 'ltr';
+          }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>يتطلب تطبيق ردّ تشغيل JavaScript. / Radd requires JavaScript.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
