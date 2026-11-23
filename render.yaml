@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: radd
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 8787
+      - key: DATABASE_PATH
+        value: /var/data/radd.sqlite
+      - key: WHATSAPP_MODE
+        value: demo
+      - key: WHATSAPP_VERIFY_TOKEN
+        value: radd_verify_123
+    disk:
+      name: radd-data
+      mountPath: /var/data
+      sizeGB: 1
